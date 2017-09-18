@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 0: Download the LabelMe Matlab Toolbox and add it to the path
 % http://labelme.csail.mit.edu/LabelMeToolbox
-addpath /your/path/to/LabelMeToolbox;
+addpath ("/home/chichivica/Projects/Python/LabelMeToolbox/main") 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 1: PREDEFINE THE LIST OF TASKS (each image to label is one task)
@@ -17,8 +17,11 @@ addpath /your/path/to/LabelMeToolbox;
 % simply sign up for a LabelMe account (http://labelme.csail.mit.edu),
 % create a collection, and add images to the collection.  Finally, set
 % the following two variables with your LabelMe username and collection name.
-username = ENTER_YOUR_USERNAME_HERE;
-collection = ENTER_YOUR_COLLECTION_NAME_HERE;
+%username='user1';
+%collection='shelves';
+
+username='jcv';
+collection='shelves';
 
 % Set this to 0 to submit tasks to users (pay money mode).
 % Set this to 1 to debug in the sandbox (free, no money).

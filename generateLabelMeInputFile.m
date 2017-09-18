@@ -32,9 +32,12 @@ function generateLabelMeInputFile(username,collection,sandbox,N,HOMEIMAGES,intro
 % Nimages - use only the first Nimages from the folder (by default create
 %              HITS for all images)
 
-baseURL = 'http://labelme.csail.mit.edu/Release3.0';
+% baseURL = 'http://labelme.csail.mit.edu/Release3.0';
 
-folder = fullfile('users',username,collection);
+baseURL = 'http://www.annotation.sotfuture.com:5224';
+
+% folder = fullfile('users',username,collection);
+folder = collection;
 
 if nargin < 3
   sandbox = 0;
@@ -43,7 +46,7 @@ if nargin < 4
   N = 'inf'; % The MT worker can label as many polygons as they wish.
 end
 if nargin < 5
-  HOMEIMAGES = fullfile(baseURL,'Images');
+  HOMEIMAGES = strcat (baseURL, "/Images") % fullfile(baseURL,'Images');
 end
 if nargin < 6
   introPage = [];
@@ -61,12 +64,22 @@ if ~isstr(N)
   N = lower(num2str(N));
 end
 
+
+
 % Get set of images:
+
+[status, text] = unix ("curl ipinfo.io/ip")
+disp(text)
+
 if any(findstr(HOMEIMAGES,'http://'))
+
+  disp(strcat(HOMEIMAGES, folder))
   % From LabelMe server:
-  page = fullfile(HOMEIMAGES,folder);
+  page = strcat(HOMEIMAGES, "/", folder) % fullfile(HOMEIMAGES,folder);
   page = strrep(page, '\', '/');
-  folders = urlread(page);
+
+  [status, folders] = unix ("curl -u italal:Xai7saiw http://www.annotation.sotfuture.com:5224/Images/shelves/")
+  %folders = urlread(page);
   folders = folders(1:length(folders));
   j1 = findstr(lower(folders), '<a href="');
   j2 = findstr(lower(folders), '</a>');
