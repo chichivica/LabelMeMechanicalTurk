@@ -34,7 +34,7 @@ function generateLabelMeInputFile(username,collection,sandbox,N,HOMEIMAGES,intro
 
 % baseURL = 'http://labelme.csail.mit.edu/Release3.0';
 
-baseURL = 'http://www.annotation.sotfuture.com:5224';
+baseURL = 'https://www.annotation.sotfuture.com:5225';
 
 % folder = fullfile('users',username,collection);
 folder = collection;
@@ -71,14 +71,17 @@ end
 [status, text] = unix ("curl ipinfo.io/ip")
 disp(text)
 
-if any(findstr(HOMEIMAGES,'http://'))
+if any(findstr(HOMEIMAGES,'https://'))
 
   disp(strcat(HOMEIMAGES, folder))
   % From LabelMe server:
+
   page = strcat(HOMEIMAGES, "/", folder) % fullfile(HOMEIMAGES,folder);
   page = strrep(page, '\', '/');
+  folder_url = strcat("curl -k https://www.annotation.sotfuture.com:5225/Images/", collection, "/")
+  [status, folders] = unix (folder_url)
 
-  [status, folders] = unix ("curl -u italal:Xai7saiw http://www.annotation.sotfuture.com:5224/Images/shelves/")
+  
   %folders = urlread(page);
   folders = folders(1:length(folders));
   j1 = findstr(lower(folders), '<a href="');

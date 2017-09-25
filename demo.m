@@ -9,6 +9,7 @@
 % STEP 0: Download the LabelMe Matlab Toolbox and add it to the path
 % http://labelme.csail.mit.edu/LabelMeToolbox
 addpath ("/home/chichivica/Projects/Python/LabelMeToolbox/main") 
+setenv ("MTURK_CMD_HOME", "/home/chichivica/Projects/Python/aws-mturk-clt")
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 1: PREDEFINE THE LIST OF TASKS (each image to label is one task)
@@ -42,7 +43,7 @@ sandbox = 1;
 % Live (pay money) mode:
 % service_url=https://mechanicalturk.amazonaws.com/?Service=AWSMechanicalTurkRequester
 
-generateLabelMeInputFile(username,collection,sandbox);
+% generateLabelMeInputFile(username,collection,sandbox);
 % HITS: you can remove specific tasks by editing the file 'labelme.input' and
 % deleting lines from it
 % PRICE: To change the price of a task, edit the file 'labelme.properties'.
@@ -86,7 +87,7 @@ return
 % STEP 4: PAY WORKERS. It is important to pay the workers as soon as possible.
 %
 reviewResults(sandbox);
-return
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 5: REMOVE HITS FROM AMAZON SERVER.
